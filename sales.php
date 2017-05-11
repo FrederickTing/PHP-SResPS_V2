@@ -4,7 +4,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<Title>Sales Module</Title>
+<Title>Sales Page</Title>
 
 <script>
 function check_empty()
@@ -82,9 +82,9 @@ include 'sidemenu.php';
  <form class ="form2" action ="sales.php" id = "form" method = "post" name = "form">
  <button  type ="button" class ="add" id = "close" onclick = "div_hide()">Close</button>
  <h2 class = "addsalestitle">Add Sales </h2>
- <hr>
- <input id = "name" name ="name" placeholder ="Name" type = "text">
- <input id = "date" name ="date" placeholder = "Date" type ="date">
+ <hr />
+ <input id = "name" name ="name" placeholder ="Name" type = "text" />
+ <input id = "date" name ="date" placeholder = "Date" type ="date" />
  
  <div id = "dynamicInput">
 <?php
@@ -110,8 +110,6 @@ include 'sidemenu.php';
 		echo $option;
 		echo $option2;
 		echo $option3;
-
-
  ?>
  </div>
  
@@ -138,7 +136,7 @@ include 'sidemenu.php';
  </script>
  
  
- <input type = "button" value = "Add Item" onClick ="addInput('dynamicInput');">
+ <input type = "button" value = "Add Item" class ="add" onClick ="addInput('dynamicInput');" />
  <a href="javascript:%20check_empty()" id = "submitadd" name = "submitadd" class ="add"> Save </a>
  </form>
  </div>
@@ -220,16 +218,19 @@ else
 	
 }
 ?>
-	<h1> Sales </h1>
+	<h1><font color="grey">Sales System </font> </h1>
 	<hr />
-	<br><br>
+	<br />
 	<table>
 	<tr><td> Customer Name: </td>
 	<td> Date: </td>
 	<td> Sales ID: </td>
-	<td> Item/Quantity : </td>
+	<td> Item: </td>
+	<td>Quantity: </td>
 	</tr>
-	
+
+	<button type="button" class="add" id="popup" onclick = "div_show()"> Add new sales</button> 
+	<p class="view">&#8595; Click To Edit Sales Record &#8595;</p>
 <?php
 $sqlstr = "SELECT * FROM sales";
 $medata = mysql_query($sqlstr,$dbConx);
@@ -251,12 +252,9 @@ while($record = mysql_fetch_array($medata))
 }
 ?>
 	</table>
-	<br>
-	<br>
-	<button type="button" class="add" id="popup" onclick = "div_show()"> Add new sale </button> 
-	<p class="view">Edit Sales Record</a>
+
 	
 </div>
-
+<div id="image"></div><img src="img/Pharc.jpg"></div>
 </body>
 </html>

@@ -21,77 +21,76 @@ function check_empty()
 </head>
 <body>
 
-<div class="top">
-	<img></img>Welcome, &lt;User&gt; <!--Have php check if used is logged in-->
-	<img></img>&lt;Date&gt; <!--Use .js get today's date -->
-	<img></img>&lt;Log Out&gt; <!--function required-->
-</div>
-<?php 
-include 'sidemenu.php';
-?>
+	
+<?php include 'sidemenu.php';?>
 <div class="body2">
 <form class ="form2" action ="modify.php" id = "form" method = "post" name = "form">
-    <input id = "saleid" name ="saleid" placeholder ="Sales ID" type = "text" value = "<?php echo $_GET['id'] ?>"> 
-    <input id = "name" name ="name" placeholder ="Name" type = "text" value ="<?php echo $_GET['nem'] ?>">
-    <input id = "date" name ="date" placeholder = "Date" type ="date">
+    <input id = "saleid" name ="saleid" placeholder ="Sales ID" type = "text" value = "<?php echo $_GET['id'] ?>" /> 
+    <input id = "name" name ="name" placeholder ="Name" type = "text" value ="<?php echo $_GET['nem'] ?>" />
+    <input id = "date" name ="date" placeholder = "Date" type ="date" />
  <div id ="dynamicInput">
- <?php
-$dbServer='localhost';
-$dbUserName = 'root';
-$dbPassword = '';
-$dbName = 'phpsrsdb';
-$dbConx = @mysql_connect($dbServer,$dbUserName,$dbPassword);
-mysql_select_db($dbName,$dbConx);
+	 <?php
+	$dbServer='localhost';
+	$dbUserName = 'root';
+	$dbPassword = '';
+	$dbName = 'phpsrsdb';
+	$dbConx = @mysql_connect($dbServer,$dbUserName,$dbPassword);
+	mysql_select_db($dbName,$dbConx);
 
-$sqlstr = "SELECT item_name FROM item";
-$medata = mysql_query($sqlstr,$dbConx);
+	$sqlstr = "SELECT item_name FROM item";
+	$medata = mysql_query($sqlstr,$dbConx);
 
-echo "<table><tr class ='itemchoose'><td class ='itemchoose'>Item 1 <select class = 'selectname' name ='select' id= 'select'>";
-$option='';
-while($rs = mysql_fetch_array($medata))
-	{
-		$option.='<option value ="'.$rs["item_name"].'">'.$rs["item_name"].'</option>';
-	}
-	$option.='</select></td><td class ="itemchoose">';
-	$option2 ='Quantity<select class ="valuenum" name ="value" id="value">';
-	$option3='<option value ="1">1</option><option value ="2">2</option><option value ="3">3</option><option value ="4">4</option><option value ="5">5</option></select></td></tr></table>';
-echo $option;
-echo $option2;
-echo $option3;
-
-
- ?>
+	echo "<table><tr class ='itemchoose'><td class ='itemchoose'>Item 1 <select class = 'selectname' name ='select' id= 'select'>";
+	$option='';
+	while($rs = mysql_fetch_array($medata))
+		{
+			$option.='<option value ="'.$rs["item_name"].'">'.$rs["item_name"].'</option>';
+		}
+		$option.='</select></td><td class ="itemchoose">';
+		$option2 ='Quantity<select class ="valuenum" name ="value" id="value">';
+		$option3='<option value ="1">1</option><option value ="2">2</option><option value ="3">3</option><option value ="4">4</option><option value ="5">5</option></select></td></tr></table>';
+	echo $option;
+	echo $option2;
+	echo $option3;
+	 ?>
  
  </div>
  
  <script>
- var counter = 1;
- var limit = 10;
- var js_data= '<?php echo $option; ?>';
- var js_data2 = '<?php echo $option3;?>';
- 
- function addInput(divName){
-		if (counter == limit)
-		{
-			alert("Limited Item Per Cart");
+	 var counter = 1;
+	 var limit = 10;
+	 var js_data= '<?php echo $option; ?>';
+	 var js_data2 = '<?php echo $option3;?>';
+
+	 function addInput(divName){
+			if (counter == limit)
+			{
+				alert("Limited Item Per Cart");
+			}
+			else
+			{
+				var newdiv = document.createElement('div');
+				newdiv.innerHTML = '<table><tr class ="itemchoose"><td class ="itemchoose">Item ' + (counter+1)+' <select class = "selectname" name="select'+(counter+1)+'" id="select'+(counter+1)+'">'+js_data+'Quantity<select class ="valuenum" name ="value'+(counter+1)+'" id="value'+(counter+1)+'">'+js_data2;
+				document.getElementById(divName).appendChild(newdiv);
+				counter++;
+			}
 		}
-		else
-		{
-			var newdiv = document.createElement('div');
-			newdiv.innerHTML = '<table><tr class ="itemchoose"><td class ="itemchoose">Item ' + (counter+1)+' <select class = "selectname" name="select'+(counter+1)+'" id="select'+(counter+1)+'">'+js_data+'Quantity<select class ="valuenum" name ="value'+(counter+1)+'" id="value'+(counter+1)+'">'+js_data2;
-			document.getElementById(divName).appendChild(newdiv);
-			counter++;
-		}
-	}
+		
+	function goBack() {
+    window.history.back();
+}
 
  </script>
  
  
- <input type = "button" value = "Add Item" onClick ="addInput('dynamicInput');">
+ <input type = "button" value = "Add Item"  class ="add" onClick ="addInput('dynamicInput');" />
  <a href="javascript:%20check_empty()" id = "submitadd" name = "submitadd" class ="add"> Save Changes </a>
- <input type = "submit" value = "Delete" id = "delethis" name = "delethis" class ="delet">
+ <input type = "submit" value = "Delete" id = "delethis" name = "delethis" class ="add">
+ <input type="button" onClick="goBack()" value="Cancel" class="add" />
  </form>
 </div>
+
+
 
 <?php
 if( isset( $_REQUEST['delethis'] ))
@@ -118,7 +117,7 @@ if( isset( $_REQUEST['delethis'] ))
 }
 else
 {
-		if ($_SERVER['REQUEST_METHOD'] == 'POST')
+	if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
 		$saleid = $_POST["saleid"];
 		$name = $_POST["name"];
@@ -186,7 +185,6 @@ else
 }
 
 ?>
-
 
 </body>
 </html>

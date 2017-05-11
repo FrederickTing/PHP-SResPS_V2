@@ -7,7 +7,13 @@ $dbName = 'phpsrsdb';
 
 $dbConx = @mysql_connect($dbServer,$dbUserName,$dbPassword);
 
- 
+ if($dbConx)
+     echo 'connected successfully to database';
+
+    $sql ="insert into login(username,password)value('siang','123')";
+    $query= mysqli_query($dbConx,$sql);
+    if($query)
+    echo 'data inserted successfully';
 
 	if (mysql_select_db($dbName) == false)
 	{
@@ -119,10 +125,8 @@ $dbConx = @mysql_connect($dbServer,$dbUserName,$dbPassword);
 			}
             else{
 				echo "<p> Table already exist </p>";
-			}
-		 
-		 
-		 
+			} 
+
 		}
 		else{
 			echo "<p>Unable to connect to the database server.<br /> Error Code "

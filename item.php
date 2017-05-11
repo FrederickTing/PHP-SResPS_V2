@@ -34,6 +34,8 @@ function div_hide(){
 
 <?php 
 include 'sidemenu.php';
+include 'stock.php';
+include 'expiry.php';
 ?>
 <div class="body2"> 
 <script>
@@ -47,16 +49,20 @@ include 'sidemenu.php';
 		});
 	});
 </script>
-<h1> Inventory </h1>
+    <h1><font color="grey"> Inventory Page </font></h1>
 	<hr />
-	<br><br>
+
 	<table>
 	<tr><td> Item Name: </td>
 	<td> Item Quantity: </td>
 	<td> Item Price: </td>
 	<td> Item ID </td>
 	</tr>
-	
+<br />
+	<br />
+	<button type="button" class="add" id="popup" onclick = "div_show()"> Add new item </button>
+	<p class="view">&#8595; Click to Edit Item &#8595;</p>
+<!--	</br></br>-->
 <?php
 $dbServer='localhost';
 $dbUserName = 'root';
@@ -76,25 +82,23 @@ while($record = mysql_fetch_array($medata))
 		echo "</tr>";
 }
 ?>
-	</table>
-	<br>
-	<br>
-	<button type="button" class="add" id="popup" onclick = "div_show()"> Add new item </button>
-	<p class="view">Click Any Item To Modify</p>
+</table>
+	
 </div>
+
 
 <div id = "poppy">
     <div id ="popupContact">
-    <form class ="form2" action ="item.php" id = "form" method = "post" name = "form">
-    <button  type ="button" class ="add" id = "close" onclick = "div_hide()">Close</button>
-    <h2 class = "addsalestitle">Add Item </h2>
-    <hr>
-        <input id = "name" name ="name" placeholder ="Item Name" type = "text">
-        <input id = "stock" name ="stock" placeholder = "Stock" type ="number">
-        <input id = "price" name ="price" placeholder = "Price" type ="number">
-        <a href="javascript:%20check_empty()" id = "submitadd" name = "submitadd" class ="add"> Save </a>
- </form>
- </div>
+		<form class ="form2" action ="item.php" id = "form" method = "post" name = "form">
+			<button  type ="button" class ="add" id = "close" onclick = "div_hide()">Close</button>
+			<h2 class = "addsalestitle">Add Item </h2>
+			<hr>
+				<input id = "name" name ="name" placeholder ="Item Name" type = "text" />
+				<input id = "stock" name ="stock" placeholder = "Stock" type ="number" />
+				<input id = "price" name ="price" placeholder = "Price" type ="number" />
+				<a href="javascript:%20check_empty()" id = "submitadd" name = "submitadd" class ="add"> Save </a>
+	 	</form>
+ 	</div>
 </div>
 <?php
 
@@ -115,10 +119,9 @@ if ($_SERVER['REQUEST_METHOD']=='POST')
 	
 }
     
-
-
-
 ?>
-
+	
+	
+<div id="image"></div><img src="img/Pharc.jpg"></div>
 </body>
 </html>

@@ -1,32 +1,39 @@
-<?php   session_start();  ?>
+<?php  session_start();  ?>
 <DOCTYPE!>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
-<Title>Report Generation</Title>
+<script src="fusionchart.js"></script>
+<Title>Report Page</Title>
 
 </head>
 <body>
+
 <?php 
 include 'sidemenu.php';
+include 'export.php';
 ?>
 <div class="body2">
 
 
 
-	<h1> Generate Report </h1>
+    <h1><font color="grey"> Report System </font></h1>
 	<hr />
-	<h2> Report By Date </h2>
-	<table>
-	<tr><td> Customer Name: </td>
-	<td> Date: </td>
-	<td> Sales ID: </td>
-	<td> Total Quantity </td>
-	<td> Total Price </td>
-	<td> Item/Quantity ---> </td>
+	<h2> Weekly/Monthly Report </h2>
+    <div class="container">
+	<table class="table table-hover">
+	<tr><th width="5%"> Customer Name: </th>
+	<th width="15%"> Date: </th>
+	<th width="5%"> Sales ID: </th>
+	<th width="10%"> Total Quantity </th>
+	<th width="10%"> Total Price </th>
+	<th width="20%"> Item </th>
+	<th width="5%"> Quantity</th>
 	</tr>
+    
+        
 		<form action ="report.php" id = "form" method = "post" name ="form">
-		<p> Generate from Date 1 until Date 2 </p>
+		<p> Generate from Date 1 to Date 2 </p>
 		 Date 1<input id = "date1" name = "date1" placeholder ="Date 1" type = "date">
 		Date 2<input id = "date2" name = "date2" placeholder ="Date 2" type = "date">
 		<input type = "submit" value = "Generate" name = "submit">
@@ -91,24 +98,29 @@ include 'sidemenu.php';
 		}
 		
 		echo "<h3>Total Quantity of Items Sold Within The Date: ".$ttlallquan."</h3><h3>".
-		"Total Price of Sold Item: ".$ttlallprice."</h3>";
+		"Total Price of Sold Item: RM ".$ttlallprice."</h3>";
 		}
 		else
 		{
 			
 		}
 		?>
+       
 		</table>
+        <form method="post" action="export.php">
+        <input type="submit" name="export" value="CSV Export" class="btn btn-info">
+        </form>
 	
 	<br><br>
-	<h2> All Daily Report </h2>
-	<table>
-	<tr><td> Customer Name: </td>
-	<td> Date: </td>
-	<td> Sales ID: </td>
-	<td> Total Quantity </td>
-	<td> Total Price </td>
-	<td> Item/Quantity ---> </td>
+	<h2> Daily Sales Report </h2>
+	<table class="table table-hover">
+	<tr><th width="20%"> Customer Name: </th>
+	<th width="5%"> Date: </th>
+	<th width="5%"> Sales ID: </th>
+	<th width="5%"> Total Quantity </th>
+	<th width="10%"> Total Price </th>
+	<th width="20%"> Item</th>
+	<th width="5%"> Quantity</th>
 	</tr>
 	
 <?php
@@ -162,6 +174,11 @@ while($record = mysql_fetch_array($medata))
 	</table>
 
 </div>
+<?php
+    
 
+?>
+
+<div id="image"></div><img src="img/Pharc.jpg"></div>
 </body>
 </html>
