@@ -108,7 +108,7 @@ include 'export.php';
        
 		</table>
         <form method="post" action="export.php">
-        <input type="submit" name="export" value="CSV Export" class="btn btn-info">
+        <input type="submit" name="export" value="CSV Export" class="btn btn-success">
         </form>
 	
 	<br><br>

@@ -9,13 +9,13 @@
 <center><h1><em><font color="black">&#9769;People Health Pharmacy Sales Reporting System &#9769;</font></em></h1></center>
 <center><h2>&#9769; Please Login before make any changes on inventory &#9769;</h2></center>
 <center><h3> Login as Below :  </h3></center>
-    <table align="center" bgcolor="#CCCCCC" border="0" cellpadding="0"
-    cellspacing="1" width="300">
+    <table align="center" bgcolor="#CCCCCC" border="0" cellpadding="1"
+    cellspacing="1" width="400">
         <tr>
             <td>
                 <form method="post" name="Login">
-                    <table bgcolor="#FFFFFF" border="0" cellpadding="1"
-                    cellspacing="1" width="100%">
+                    <table bgcolor="#FFFFFF" border="1" cellpadding="3"
+                    cellspacing="3" width="100%">
                         <tr>
                             <td align="center" colspan="3"><strong>User
                             Login</strong></td>
@@ -23,7 +23,7 @@
                         <tr>
                             <td width="78">Username</td>
                             <td width="6">:</td>
-                            <td width="294"><input id="username" name=
+                            <td width="200"><input id="username" name=
                             "username" type="text"></td>
                         </tr>
                         <tr>
